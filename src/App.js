@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import slugify from 'slugify';
 import './App.css';
+import SelectableList from './SelectableList/SelectableList';
 
+/*
 const USCurrencyFormat = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD'
-});
+}); */
 
-class App extends Component {
+class App extends React.Component {
   state = {
     total:'',
     selected: {
@@ -101,31 +103,48 @@ class App extends Component {
     //   0
     // );
 
+    render() {
 
-    return (
-      <div className="App">
-        <header>
-          <h1>ELF Computing | Laptops</h1>
-        </header>
-        <main>
-          <form className="main__form">
-            <h2>Customize your laptop</h2>
-            {features}
-          </form>
-          <section className="main__summary">
-            <h2>Your cart</h2>
-            {summary}
-            <div className="summary__total">
-              <div className="summary__total__label">Total</div>
-              <div className="summary__total__value">
-                {USCurrencyFormat.format(total)}
+      const features = Object.keys(this.props.features)
+      console.log(features)
+      /*
+      .map(key => {
+
+      }) */
+
+
+      return (
+        <div className="App">
+          <header>
+            <h1>ELF Computing | Laptops</h1>
+          </header>
+          <main>
+            <form className="main__form">
+              <h2>Customize your laptop</h2>
+              <SelectableList
+                features = {this.features}
+                selected = {this.state.selected}
+                update = {this.updateFeature}
+                
+
+
+                
+                />
+            </form>
+            <section className="main__summary">
+              <h2>Your cart</h2>
+              {summary}
+              <div className="summary__total">
+                <div className="summary__total__label">Total</div>
+                <div className="summary__total__value">
+                  {USCurrencyFormat.format(total)}
+                </div>
               </div>
-            </div>
-          </section>
-        </main>
-      </div>
-    );
-  }
+            </section>
+          </main>
+        </div>
+      );
+    }
 }
 
 export default App;

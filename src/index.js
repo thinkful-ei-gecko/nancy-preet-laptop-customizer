@@ -6,7 +6,7 @@ import App from './App';
 const FEATURES = {
   Processor: [
     {
-      name: '17th Generation Intel Core HB (7 Core with donut spare)',
+      name: '17th Gen`eration Intel Core HB (7 Core with donut spare)',
       cost: 700
     },
     {

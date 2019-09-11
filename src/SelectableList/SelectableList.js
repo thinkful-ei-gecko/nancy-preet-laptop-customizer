@@ -1,44 +1,35 @@
 import React, { Component } from 'react';
-import slugify from 'slugify';
 
-
-const USCurrencyFormat = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
-});
+import Options from './options';
 
 class SelectableList extends Component {
-    render() {
-      const features = Object.keys(this.props.features).map((feature, idx) => {
-        const featureHash = feature + '-' + idx;
-        const options = this.props.features[feature].map(item => {
-            const itemHash = slugify(JSON.stringify(item));
-             return (
-              <div key={itemHash} className="feature__item">
-                <input
-                  type="radio"
-                  id={itemHash}
-                  className="feature__option"
-                  name={slugify(feature)}
-                  checked={item.name === this.props.selected[feature].name}
-                  onChange={e => this.props.update(feature, item)}
-                />
-                <label htmlFor={itemHash} className="feature__label">
-                  {item.name} ({USCurrencyFormat.format(item.cost)})
-                </label>
-              </div>
-            )
-        }) 
+
+  render() {
+    console.log(this.props)
+
+  return (
+    <>
+      {Object.keys(this.props.features).map((feature, idx) => {
+      const featureHash = feature + '-' + idx;
         return (
-            <fieldset className="feature" key={featureHash}>
-              <legend className="feature__name">
-                <h3>{feature}</h3>
-              </legend>
-              {options}
-            </fieldset>
-      ) 
-    })
-    return features;
+          <fieldset className="feature" key={featureHash}>
+            <legend className="feature__name">
+              <h3>{feature}</h3>
+            </legend>
+            <Options 
+            features = {this.props.features}
+            feature = {feature}
+            featureHash = {featureHash}
+            selected = {this.props.selected}
+            update = {this.props.update}
+            />
+          </fieldset>
+        ) 
+        })
     }
+      </>
+
+    ) 
+  }
 } 
 export default SelectableList;

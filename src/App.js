@@ -38,14 +38,6 @@ class App extends React.Component {
 
     render() {
 
-      // const features = Object.keys(this.props.features)
-      // console.log(features)
-      // /*
-      // .map(key => {
-
-      // }) */
-
-
       return (
         <div className="App">
           <header>
@@ -53,7 +45,7 @@ class App extends React.Component {
           </header>
           <main>
             <form className="main__form">
-              <h2>Customize your laptop</h2>
+            <h2>Customize your laptop</h2>
               <SelectableList
                 features = {this.props.features}
                 selected = {this.state.selected}
